@@ -23,7 +23,10 @@ Route::get('/home', function () {
     return \Illuminate\Support\Facades\Redirect::to('/');
 });
 
+
 Route::get('/prepods/get', [PrepodController::class, 'showAll']);
+Route::post('/prepods/login', [PrepodController::class, 'login']);
+Route::post('/prepods/register', [PrepodController::class, 'register']);
 
 Route::get('/uroki', [UrokiController::class, 'showAll'])->name('uroki');
 
