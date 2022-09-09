@@ -16,7 +16,7 @@
                         </div>
                     @endif
 
-                    <a href="uroki">Уроки</a>
+                    <a href="uroki">Уроки </a>
                     <a href="nagruzka">Нагрузка</a>
                     {{ __('ССЫЛКА 3') }}
                     {{ __('ССЫЛКА 4') }}

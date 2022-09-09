@@ -17,8 +17,6 @@ use App\Http\Controllers\UrokiController;
 */
 Auth::routes();
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
-
 Route::get('/home', function () {
     return \Illuminate\Support\Facades\Redirect::to('/');
 });
@@ -28,7 +26,11 @@ Route::get('/prepods/get', [PrepodController::class, 'showAll']);
 Route::post('/prepods/login', [PrepodController::class, 'login']);
 Route::post('/prepods/register', [PrepodController::class, 'register']);
 
-Route::get('/uroki', [UrokiController::class, 'showAll'])->name('uroki');
+Route::middleware('auth')->group(function (){
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/uroki', [UrokiController::class, 'showAll'])->name('uroki');
+    Route::get('/nagruzka', [NagruzkaController::class, 'showAll'])->name('nagruzka');
+});
 
-Route::get('/nagruzka', [NagruzkaController::class, 'showAll'])->name('nagruzka');
+
 
