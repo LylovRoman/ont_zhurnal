@@ -12,4 +12,7 @@ class UrokiController extends Controller
         $uroki = DB::table('uroki_prepod')->get()->where('KODPREPOD', '=', Auth::user()->id);
         return view('uroki', compact('uroki'));
     }
+    public function getJSON(){
+        return response()->json(DB::table('uroki_prepod')->get()->where('KODPREPOD', '=', Auth::user()->id), 200);
+    }
 }

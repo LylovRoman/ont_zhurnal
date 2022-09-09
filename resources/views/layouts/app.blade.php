@@ -13,8 +13,7 @@
 
     <!-- Scripts -->
     <script src="https://unpkg.com/vue@3" defer></script>
-    <script src="/js/index.js" defer></script>
-
+    @yield('scripts')
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">

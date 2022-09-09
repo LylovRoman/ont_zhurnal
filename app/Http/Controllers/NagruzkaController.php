@@ -10,7 +10,10 @@ use Illuminate\Support\Facades\DB;
 class NagruzkaController extends Controller
 {
     public function showAll(){
-        $nagruzki = Nagruzka::all()->where('prepod', '=', Auth::user()->id);
+        $nagruzki = Nagruzka::all()->where('prepod', Auth::user()->id);
         return view('nagruzka', compact('nagruzki'));
+    }
+    public function getJSON(){
+        return response()->json(Nagruzka::all()->where('prepod', Auth::user()->id), 200);
     }
 }

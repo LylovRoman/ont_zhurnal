@@ -30,6 +30,8 @@ Route::middleware('auth')->group(function (){
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/uroki', [UrokiController::class, 'showAll'])->name('uroki');
     Route::get('/nagruzka', [NagruzkaController::class, 'showAll'])->name('nagruzka');
+    Route::get('/api/uroki', [UrokiController::class, 'getJSON']);
+    Route::get('/api/nagruzka', [NagruzkaController::class, 'getJSON']);
 });
 
 
