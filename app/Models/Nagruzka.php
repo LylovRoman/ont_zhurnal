@@ -12,6 +12,12 @@ class Nagruzka extends Model
     protected $guarded = false;
     protected $table = 'nagruzka';
     public $timestamps = false;
+
+    protected $appends = ['discipName'];
+    public function getDiscipNameAttribute() {
+        return $this->discip->name;
+    }
+
     public function discip()
     {
         return $this->belongsTo(Discip::class, 'predmet', 'kod');

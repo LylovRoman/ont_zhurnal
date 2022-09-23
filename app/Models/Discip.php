@@ -16,4 +16,8 @@ class Discip extends Model
     {
         return $this->hasMany(Nagruzka::class, 'predmet', 'kod');
     }
+    public function spez()
+    {
+        return $this->belongsTo(Spez::class, 'spez', 'kod');
+    }
 }

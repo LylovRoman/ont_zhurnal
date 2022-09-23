@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\SpezController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PrepodController;
 use App\Http\Controllers\NagruzkaController;
-use App\Http\Controllers\UrokiController;
+use App\Http\Controllers\VychitkaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,8 +29,14 @@ Route::post('/prepods/register', [PrepodController::class, 'register']);
 
 Route::middleware('auth')->group(function (){
     Route::get('/', [HomeController::class, 'index'])->name('home');
-    Route::get('/uroki', [UrokiController::class, 'showAll'])->name('uroki');
+    Route::get('/vychitka', [VychitkaController::class, 'showAll'])->name('vychitka');
     Route::get('/nagruzka', [NagruzkaController::class, 'showAll'])->name('nagruzka');
+    Route::get('/discip', [SpezController::class, 'showAll'])->name('discip');
+
+    Route::get('/api/vychitka', [VychitkaController::class, 'showVychitkaJson']);
+    Route::get('/api/nagruzka', [NagruzkaController::class, 'showNagruzkaJson']);
+    Route::get('/api/discip/{kod}', [SpezController::class, 'showDiscipJson']);
+    Route::get('/api/spez', [SpezController::class, 'showSpezJson']);
 });
 
 

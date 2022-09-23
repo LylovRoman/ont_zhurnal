@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    Нагрузка
+    Вычитка
 @endsection
 @section('content')
     <div class="container">
@@ -8,8 +8,7 @@
             :columns="this.columns"
             :rows="this.posts"
             :can-select-row="false"
-            :action-panel-row="this.userActionPanel"
         />
     </div>
-    <script src="./js/nagruzka.js" type="module"></script>
+    <script src="./js/vychitka.js" type="module"></script>
 @endsection

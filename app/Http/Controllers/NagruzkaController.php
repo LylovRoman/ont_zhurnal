@@ -13,4 +13,8 @@ class NagruzkaController extends Controller
         $nagruzki = Nagruzka::all()->where('prepod', '=', Auth::user()->id);
         return view('nagruzka', compact('nagruzki'));
     }
+    public function showNagruzkaJson(){
+        $nagruzki = Nagruzka::all();
+        return response($nagruzki);
+    }
 }

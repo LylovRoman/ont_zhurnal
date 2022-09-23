@@ -16,10 +16,9 @@
                         </div>
                     @endif
 
-                    <a href="uroki">Уроки </a>
+                    <a href="vychitka">Вычитка</a>
+                    <a href="discip">Дисциплины</a>
                     <a href="nagruzka">Нагрузка</a>
-                    {{ __('ССЫЛКА 3') }}
-                    {{ __('ССЫЛКА 4') }}
                 </div>
             </div>
         </div>
