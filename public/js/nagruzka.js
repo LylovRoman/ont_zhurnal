@@ -1,4 +1,4 @@
-import SmartTable from "./components/SmartTable.js";
+import SmartTable from "./components/Index.js";
 
 window.addEventListener('DOMContentLoaded', (event) => {
     Vue.createApp({
@@ -27,11 +27,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.getPosts();
         },
         methods: {
-            getPosts() {
-                fetch('/api/nagruzka')
+            getPosts(row) {
+                console.log(row)
+                fetch(`/api/nagruzka`)
                     .then(res => res.json())
                     .then(res => {
                         this.posts = res;
+                        console.log(res)
                     })
             },
         },

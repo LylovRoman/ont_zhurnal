@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('scripts')
+    <script src="/js/nagruzka.js" defer type="module"></script>
+@endsection
 @section('title')
     Нагрузка
 @endsection
