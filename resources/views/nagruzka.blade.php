@@ -7,6 +7,7 @@
 @endsection
 @section('content')
     <div class="container">
+        <h1>Нагрузка</h1>
         <smart-table
             :columns="this.columns"
             :rows="this.posts"
