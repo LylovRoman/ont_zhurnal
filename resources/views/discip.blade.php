@@ -3,6 +3,7 @@
     Дисциплины
 @endsection
 @section('content')
+    <popup :inpopup="this.popupcomponent"></popup>
     <div class="container">
         <h1>Специальности</h1>
         <smart-table ref="usersTable"
@@ -19,7 +20,7 @@
             :columns="this.columnsDiscipTable"
             :rows="this.discips"
             :can-select-row="false"
+            :action-panel-row="this.discipActionPanel"
         ></smart-table>
-
     <script src="./js/discip.js" type="module"></script>
 @endsection

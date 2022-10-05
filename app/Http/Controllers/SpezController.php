@@ -13,14 +13,19 @@ class SpezController extends Controller
         $spezs = Spez::all();
         return view('discip', compact('spezs'));
     }
-    public function showSpezJson(){
+    public function showSpezsJson(){
         $spezs = Spez::all();
         return response($spezs);
+    }
+    public function showSpezJson($kod){
+        $spez = Spez::where('kod', $kod)->get();
+        return response($spez);
     }
     public function showDiscipJson($kod){
         $discips = Discip::where('spez', $kod)->get();
         return response($discips);
     }
+
     public function addSpez(Request $request){
         Spez::create($request);
     }

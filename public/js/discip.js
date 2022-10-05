@@ -1,10 +1,14 @@
 import SmartTable from "./components/SmartTable.js";
+import Popup from "./components/Popup.js";
+import Inputs from "./components/Inputs.js";
+
 
 window.addEventListener('DOMContentLoaded', (event) => {
     Vue.createApp({
         name: 'Application',
         data() {
             return {
+                popupcomponent: Inputs,
                 columnsSpezTable: {
                     kod: 'Код',
                     name: 'Название'
@@ -14,10 +18,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     spez: 'Специальность',
                     sokr: 'Сокращение'
                 },
+                discipActionPanel: [
+                    {
+                        title: 'Редактировать',
+                        cb: this.editSpez
+                    }
+                ],
                 spezActionPanel: [
                     {
-                        title: 'Получить посты',
-                        cb: this.getPosts
+                        title: 'Редактировать',
+                        cb: this.editSpez
                     },
                     {
                         title: 'Обновить список',
@@ -26,18 +36,27 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 ],
                 spezs: [],
                 discips: [],
-                selectedSpez: []
+                selectedSpez: [],
+                inputs: []
             }
         },
         created() {
             this.getSpezs();
         },
         methods: {
+            editSpez(row){
+                fetch(`/api/spez/${row.kod}`)
+                    .then(res => res.json())
+                    .then(res => {
+                        console.log(res[0]);
+                        this.inputs = res[0];
+                    })
+            },
             refreshUsers(row, refresh) {
                 refresh();
             },
             getSpezs(){
-                fetch('/api/spez')
+                fetch('/api/spezs')
                     .then(res => res.json())
                     .then(res => {
                         this.spezs = res;
@@ -56,7 +75,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
         },
         components: {
-            SmartTable
+            SmartTable,
+            Popup,
+            Inputs
         }
     }).mount('#app');
 })

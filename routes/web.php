@@ -36,7 +36,8 @@ Route::middleware('auth')->group(function (){
     Route::get('/api/vychitka', [VychitkaController::class, 'showVychitkaJson']);
     Route::get('/api/nagruzka', [NagruzkaController::class, 'showNagruzkaJson']);
     Route::get('/api/discip/{kod}', [SpezController::class, 'showDiscipJson']);
-    Route::get('/api/spez', [SpezController::class, 'showSpezJson']);
+    Route::get('/api/spezs', [SpezController::class, 'showSpezsJson']);
+    Route::get('/api/spez/{kod}', [SpezController::class, 'showSpezJson']);
 });
 
 
