@@ -1,11 +1,15 @@
 @extends('layouts.app')
-@section('scripts')
-    <script src="/js/nagruzka.js" defer type="module"></script>
-@endsection
 @section('title')
     Нагрузка
 @endsection
 @section('content')
+    <popup
+        :inpopup="this.popupcomponent"
+        :inputs="this.inputs"
+        :action="this.action"
+    >
+        {{ csrf_field() }}
+    </popup>
     <div class="container">
         <h1>Нагрузка</h1>
         <smart-table

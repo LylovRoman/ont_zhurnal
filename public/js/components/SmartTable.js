@@ -131,7 +131,7 @@ export default {
                 }
                 this.actionPanel = document.createElement('div');
                 this.actionPanel.style.cssText = `
-                    width: 100px;
+                    width: 200px;
                     padding: 10px;
                     background: #FFFFFF;
                     border: 1px solid #000000;
@@ -188,7 +188,7 @@ export default {
                     <th v-if="this.canSelectRow" style="padding: 0 10px; border: 1px solid #AAAAAA; background: #AAAAAA;">
                         <input type="checkbox" disabled>
                     </th>
-                    <th v-html="row[key]" v-for="(column, key) in this.columns" style="padding: 10px; border: 1px solid #AAAAAA; background: rgba(200,200,200, 1)">
+                    <th v-html="row[key]" v-for="(column, key) in this.columns" style="padding: 10px; border: 1px solid #AAAAAA; background: rgba(230,230,230, 1)">
 
                     </th>
                 </tr>

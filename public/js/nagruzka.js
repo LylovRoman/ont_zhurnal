@@ -1,4 +1,6 @@
-import SmartTable from "./components/Index.js";
+import SmartTable from "./components/SmartTable.js";
+import Popup from "./components/Popup.js";
+import Inputs from "./components/Inputs.js";
 
 window.addEventListener('DOMContentLoaded', (event) => {
     Vue.createApp({
@@ -17,10 +19,21 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 posts: [],
                 userActionPanel: [
                     {
-                        title: 'Получить посты',
-                        cb: this.getPosts
+                        title: 'Добавить',
+                        cb: this.addNagruzka
                     },
-                ]
+                    {
+                        title: 'Редактировать',
+                        cb: this.editNagruzka
+                    },
+                    {
+                        title: 'Удалить',
+                        cb: this.deleteNagruzka
+                    }
+                ],
+                inputs: [],
+                action: '',
+                popupcomponent: Inputs
             }
         },
         created() {
@@ -28,17 +41,40 @@ window.addEventListener('DOMContentLoaded', (event) => {
         },
         methods: {
             getPosts(row) {
-                console.log(row)
                 fetch(`/api/nagruzka`)
                     .then(res => res.json())
                     .then(res => {
                         this.posts = res;
-                        console.log(res)
                     })
             },
+            editNagruzka(row){
+                fetch(`/api/nagruzka/${row.id}`)
+                    .then(res => res.json())
+                    .then(res => {
+                        this.inputs = res[0];
+                        this.action = '/api/update/nagruzka';
+                    });
+            },
+            deleteNagruzka(row){
+                fetch(`/api/nagruzka/delete/${row.id}`)
+                    .then(res => {
+                        location.reload();
+                    });
+            },
+            addNagruzka(){
+                fetch(`/api/nagruzka/score/latest`)
+                    .then(res => res.json())
+                    .then(res => {
+                        res.id++;
+                        this.inputs = res;
+                        this.action = '/api/add/nagruzka';
+                    });
+            }
         },
         components: {
-            SmartTable
+            SmartTable,
+            Popup,
+            Inputs
         }
     }).mount('#app');
 })

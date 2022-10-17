@@ -56,7 +56,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link" style="float: left" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    {{ Auth::user()->name }} {{ Auth::user()->patronymic }}
                                 </a>
                                 <a class="nav-link" style="float: right" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();

@@ -3,7 +3,13 @@
     Дисциплины
 @endsection
 @section('content')
-    <popup :inpopup="this.popupcomponent"></popup>
+    <popup
+        :inpopup="this.popupcomponent"
+        :inputs="this.inputs"
+        :action="this.action"
+    >
+        {{ csrf_field() }}
+    </popup>
     <div class="container">
         <h1>Специальности</h1>
         <smart-table ref="usersTable"
