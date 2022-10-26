@@ -12,6 +12,9 @@
     </popup>
     <div class="container">
         <h1>Вычитка</h1>
+        <select-table
+            :action="this.selectAction"
+        ></select-table>
         <smart-table
             :columns="this.columns"
             :rows="this.posts"

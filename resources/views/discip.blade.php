@@ -22,6 +22,7 @@
                      :action-panel-row="this.spezActionPanel"
         ></smart-table><br>
         <h1>Дисциплины</h1>
+        <input type="text" placeholder="Найти по названию">
         <smart-table
             :columns="this.columnsDiscipTable"
             :rows="this.discips"

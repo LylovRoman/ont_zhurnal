@@ -1,7 +1,7 @@
 import SmartTable from "./components/SmartTable.js";
 import Popup from "./components/Popup.js";
 import Inputs from "./components/Inputs.js";
-
+import SelectTable from "./components/SelectTable.js";
 
 window.addEventListener('DOMContentLoaded', (event) => {
     Vue.createApp({
@@ -33,7 +33,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                 ],
                 inputs: [],
-                action: ''
+                action: '',
+                selectAction: 'vychitka/filter/'
             }
         },
         created() {
@@ -74,7 +75,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
         components: {
             SmartTable,
             Popup,
-            Inputs
+            Inputs,
+            SelectTable
         }
     }).mount('#app');
 })

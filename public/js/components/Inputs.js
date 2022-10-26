@@ -24,7 +24,6 @@ export default {
         for (let key in this.inputs) {
             this.counter++;
         }
-
         this.number = 0;
         let inputColumn = new Object();
         for (let input in this.inputs) {

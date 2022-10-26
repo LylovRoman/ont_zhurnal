@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/vychitka', [VychitkaController::class, 'showAll'])->name('vychitka');
     Route::get('/nagruzka', [NagruzkaController::class, 'showAll'])->name('nagruzka');
     Route::get('/discip', [SpezController::class, 'showAll'])->name('discip');
+    Route::get('vychitka/filter/{mesyac}', [VychitkaController::class, 'filterVychitka']);
 
     Route::get('/api/vychitka', [VychitkaController::class, 'showAllVychitkaJson']);
     Route::get('/api/vychitka/{KOD}', [VychitkaController::class, 'showVychitkaJson']);

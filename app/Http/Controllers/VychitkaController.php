@@ -11,7 +11,7 @@ class VychitkaController extends Controller
 {
     public function showAll(){
         $vychitka = Vychitka::where('KODPREPOD', Auth::user()->id);
-        return view('vychitka', compact('vychitka'));
+        return view('vychitka');
     }
     public function showAllVychitkaJson(){
         $vychitka = Vychitka::all();
@@ -19,6 +19,10 @@ class VychitkaController extends Controller
     }
     public function showVychitkaJson($kod){
         $vychitka = Vychitka::where('KOD', $kod)->get();
+        return response($vychitka);
+    }
+    public function filterVychitka($mesyac){
+        $vychitka = Vychitka::where('MESYAC', $mesyac)->get();
         return response($vychitka);
     }
     public function updateVychitka(Request $request){
