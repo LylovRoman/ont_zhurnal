@@ -39,6 +39,8 @@ Route::middleware('auth')->group(function (){
     Route::get('/api/nagruzka', [NagruzkaController::class, 'showAllNagruzkaJson']);
     Route::get('/api/nagruzka/{id}', [NagruzkaController::class, 'showNagruzkaJson']);
     Route::get('/api/discip/{kod}', [SpezController::class, 'showDiscipJson']);
+    Route::get('/api/discip/sort/{kod}/{search}', [SpezController::class, 'showDiscipSortJson']);
+
     Route::get('/api/discip/edit/{kod}', [SpezController::class, 'showDiscipEditJson']);
     Route::get('/api/discip/score/latest', [SpezController::class, 'showDiscipLatestJson']);
     Route::get('/api/spez/score/latest', [SpezController::class, 'showSpezLatestJson']);

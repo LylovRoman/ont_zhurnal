@@ -22,7 +22,9 @@
                      :action-panel-row="this.spezActionPanel"
         ></smart-table><br>
         <h1>Дисциплины</h1>
-        <input type="text" placeholder="Найти по названию">
+        <input-sort v-model:input-value="this.searchValue">
+
+        </input-sort>
         <smart-table
             :columns="this.columnsDiscipTable"
             :rows="this.discips"

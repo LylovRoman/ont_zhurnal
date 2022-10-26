@@ -41,8 +41,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.getPosts();
         },
         methods: {
-            getPosts() {
-                fetch('/api/vychitka')
+            getPosts(monthValue) {
+                fetch(`/api/vychitka?month=${monthValue}`)
                     .then(res => res.json())
                     .then(res => {
                         this.posts = res;

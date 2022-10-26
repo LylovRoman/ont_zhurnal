@@ -1,6 +1,7 @@
 import SmartTable from "./components/SmartTable.js";
 import Popup from "./components/Popup.js";
 import Inputs from "./components/Inputs.js";
+import InputSort from "./components/InputSort.js";
 
 
 window.addEventListener('DOMContentLoaded', (event) => {
@@ -8,6 +9,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         name: 'Application',
         data() {
             return {
+                searchValue: '',
                 popupcomponent: Inputs,
                 columnsSpezTable: {
                     kod: 'Код',
@@ -56,9 +58,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
         created() {
             this.getSpezs();
         },
+        watch: {
+            searchValue: function() {
+                this.sortDiscips(this.selectedSpez, this.searchValue)
+            }
+        },
         methods: {
-            editSpez(row){
-                fetch(`/api/spez/${row.kod}`)
+            editSpez(selectedSpez){
+                fetch(`/api/spez/${selectedSpez.kod}`)
                     .then(res => res.json())
                     .then(res => {
                         this.inputs = res[0];
@@ -73,17 +80,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         this.action = '/api/add/spez';
                     });
             },
-            refreshUsers(row, refresh) {
+            refreshUsers(selectedSpez, refresh) {
                 refresh();
             },
-            deleteSpez(row){
-                fetch(`/api/spez/delete/${row.kod}`)
+            deleteSpez(selectedSpez){
+                fetch(`/api/spez/delete/${selectedSpez.kod}`)
                     .then(res => {
                         location.reload();
                     });
             },
-            editDiscip(row){
-                fetch(`/api/discip/edit/${row.kod}`)
+            editDiscip(selectedSpez){
+                fetch(`/api/discip/edit/${selectedSpez.kod}`)
                     .then(res => res.json())
                     .then(res => {
                         this.inputs = res[0];
@@ -99,8 +106,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         this.action = '/api/add/discip';
                     });
             },
-            deleteDiscip(row){
-                fetch(`/api/discip/delete/${row.kod}`)
+            deleteDiscip(selectedSpez){
+                fetch(`/api/discip/delete/${selectedSpez.kod}`)
                     .then(res => {
                         location.reload();
                     });
@@ -112,9 +119,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         this.spezs = res;
                     })
             },
-            getDiscips(row) {
-                if(row) {
-                    fetch(`/api/discip/${row.kod}`)
+            getDiscips(selectedSpez) {
+                if(selectedSpez) {
+                    fetch(`/api/discip/${selectedSpez.kod}`)
                         .then(res => res.json())
                         .then(res => {
                             this.discips = res;
@@ -122,12 +129,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 } else {
                     this.discips = [];
                 }
+            },
+            sortDiscips(selectedSpez, search) {
+                if (!search){
+                    this.getDiscips(selectedSpez)
+                } else {
+                    fetch(`/api/discip/sort/${selectedSpez.kod}/${search}`)
+                        .then(res => res.json())
+                        .then(res => {
+                            this.discips = res;
+                        })
+                }
             }
         },
         components: {
             SmartTable,
             Popup,
-            Inputs
+            Inputs,
+            InputSort
         }
     }).mount('#app');
 })

@@ -91,4 +91,8 @@ class SpezController extends Controller
     public function deleteDiscip(Request $request){
         Discip::where('kod', $request->kod)->delete();
     }
+    public function showDiscipSortJson($kod, $search){
+        $discips = Discip::where('spez', $kod)->where('name', 'like', $search . '%')->get();
+        return response($discips);
+    }
 }

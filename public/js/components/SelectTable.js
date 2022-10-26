@@ -5,22 +5,12 @@ export default {
             value: 0
         };
     },
-    props: {
-        action: {
-            type: String,
-            default: ''
-        }
-    },
     updated(){
         this.selectFunction();
     },
     methods: {
         selectFunction(){
-            fetch(this.action + this.value)
-                .then(res => res.json())
-                .then(res => {
-                    console.log(this.action + this.value);
-                })
+            this.$emit('changeValue', this.value);
         }
     },
     template: `
