@@ -2,7 +2,7 @@ export default {
     name: 'SelectTable',
     data() {
         return {
-            value: 0
+            value: null
         };
     },
     updated(){
