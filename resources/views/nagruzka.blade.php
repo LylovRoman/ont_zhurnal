@@ -7,6 +7,7 @@
         :inpopup="this.popupcomponent"
         :inputs="this.inputs"
         :action="this.action"
+        :titles="this.columns"
     >
         {{ csrf_field() }}
     </popup>

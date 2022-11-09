@@ -16,10 +16,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     name: 'Название'
                 },
                 columnsDiscipTable: {
+                    kod: 'Код',
                     name: 'Название',
                     spez: 'Специальность',
                     sokr: 'Сокращение'
                 },
+                columns:{},
                 discipActionPanel: [
                     {
                         title: 'Добавить',
@@ -52,7 +54,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 discips: [],
                 selectedSpez: [],
                 inputs: [],
-                action: ''
+                action: '',
             }
         },
         created() {
@@ -68,6 +70,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 fetch(`/api/spez/${selectedSpez.kod}`)
                     .then(res => res.json())
                     .then(res => {
+                        this.columns = this.columnsSpezTable;
                         this.inputs = res[0];
                         this.action = '/api/update/spez';
                     });
@@ -76,6 +79,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 fetch(`/api/spez/score/latest`)
                     .then(res => res.json())
                     .then(res => {
+                        this.columns = this.columnsSpezTable;
                         this.inputs = res;
                         this.action = '/api/add/spez';
                     });
@@ -93,6 +97,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 fetch(`/api/discip/edit/${selectedSpez.kod}`)
                     .then(res => res.json())
                     .then(res => {
+                        this.columns = this.columnsDiscipTable;
                         this.inputs = res[0];
                         this.action = '/api/update/discip';
                     });
@@ -101,6 +106,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 fetch(`/api/discip/score/latest`)
                     .then(res => res.json())
                     .then(res => {
+                        this.columns = this.columnsDiscipTable;
                         res.kod++;
                         this.inputs = res;
                         this.action = '/api/add/discip';

@@ -14,7 +14,7 @@ class NagruzkaController extends Controller
         return view('nagruzka', compact('nagruzki'));
     }
     public function showAllNagruzkaJson(){
-        $nagruzki = Nagruzka::all();
+        $nagruzki = Nagruzka::where('prepod', Auth::user()->id)->get();
         return response($nagruzki);
     }
     public function showNagruzkaJson($id){
@@ -24,13 +24,12 @@ class NagruzkaController extends Controller
     public function updateNagruzka(Request $request){
         Nagruzka::where('id', $request->id)->update([
             'id' => $request->id,
-            'prepod' => $request->prepod,
             'predmet' => $request->predmet,
             'sem1' => $request->sem1,
             'sem2' => $request->sem2,
             'haracter' => $request->haracter,
             'tip' => $request->tip,
-            'itogo' => $request->itogo,
+            'itogo' => $request->sem1 + $request->sem2,
             'gruppa' => $request->gruppa
         ]);
         return redirect('/nagruzka');

@@ -73,14 +73,6 @@ class SpezController extends Controller
             'kod' => $request->kod,
             'name' => $request->name,
             'spez' => $request->spez,
-            'sem1' => $request->sem1,
-            'sem2' => $request->sem2,
-            'sem3' => $request->sem3,
-            'sem4' => $request->sem4,
-            'sem5' => $request->sem5,
-            'sem6' => $request->sem6,
-            'sem7' => $request->sem7,
-            'sem8' => $request->sem8,
             'sokr' => $request->sokr
         ]);
         return redirect('/discip');

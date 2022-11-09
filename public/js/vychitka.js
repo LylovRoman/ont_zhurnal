@@ -10,9 +10,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
             return {
                 popupcomponent: Inputs,
                 columns: {
+                    KOD: 'Код',
                     GOD: 'Год',
                     MESYAC: 'Месяц',
-                    PREDMETNAME: 'Предмет',
+                    PREDMET: 'Предмет',
                     TIP: 'Тип',
                     GRUPPA: 'Группа',
                     VSEGO: 'Всего'
@@ -39,6 +40,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
         },
         created() {
             this.getPosts();
+        },
+        watch: {
+            inputs(){
+                console.log(this.inputs);
+            }
         },
         methods: {
             getPosts(monthValue) {

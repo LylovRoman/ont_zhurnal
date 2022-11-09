@@ -12,7 +12,11 @@ export default {
         action: {
             type: String,
             default: ''
-        }
+        },
+        titles: {
+            type: Object,
+            default: {}
+        },
     },
     data(){
         return {
@@ -20,9 +24,9 @@ export default {
         };
     },
     template: `
-        <div v-if="this.active" @click="togglePopup" style="top: 0; left: 0; z-index: 100; position: fixed; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.7); display: flex; justify-content: center; align-items: center">
-            <div @click.stop style="background: #ffffff; padding: 20px;">
-                <component :is="this.inpopup" :inputs="this.inputs" :action="this.action"></component>
+        <div v-if="this.active" @mousedown="togglePopup" style="top: 0; left: 0; z-index: 100; position: fixed; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.7); display: flex; justify-content: center; align-items: center">
+            <div @mousedown.stop style="border-radius: 30px; background: #ffffff; padding: 30px; display: flex; flex-direction: row; justify-content: center">
+                <component :is="this.inpopup" :inputs="this.inputs" :action="this.action" :titles="this.titles"></component>
             </div>
         </div>
     `,

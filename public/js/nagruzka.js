@@ -8,7 +8,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
         data() {
             return {
                 columns: {
-                    discipName: 'Предмет',
+                    id: 'ID',
+                    predmet: 'Предмет',
                     gruppa: 'Группа',
                     sem1: '1 семестр',
                     sem2: '2 семестр',
@@ -52,6 +53,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     .then(res => res.json())
                     .then(res => {
                         this.inputs = res[0];
+                        console.log(this.inputs);
                         this.action = '/api/update/nagruzka';
                     });
             },

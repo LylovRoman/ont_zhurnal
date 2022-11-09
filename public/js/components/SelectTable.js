@@ -8,6 +8,10 @@ export default {
     updated(){
         this.selectFunction();
     },
+    mounted(){
+        this.value = 0;
+        this.selectFunction();
+    },
     methods: {
         selectFunction(){
             this.$emit('changeValue', this.value);

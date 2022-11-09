@@ -28,7 +28,7 @@ Route::post('/prepods/login', [PrepodController::class, 'login']);
 Route::post('/prepods/register', [PrepodController::class, 'register']);
 
 Route::middleware('auth')->group(function (){
-    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/', function (){ return redirect('/vychitka'); });
     Route::get('/vychitka', [VychitkaController::class, 'showAll'])->name('vychitka');
     Route::get('/nagruzka', [NagruzkaController::class, 'showAll'])->name('nagruzka');
     Route::get('/discip', [SpezController::class, 'showAll'])->name('discip');
