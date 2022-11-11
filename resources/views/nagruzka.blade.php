@@ -12,7 +12,11 @@
         {{ csrf_field() }}
     </popup>
     <div class="container">
-        <h1>Нагрузка</h1>
+        <h1>Нагрузка
+            <emit-button
+                @button-click="this.addNagruzka"
+            ></emit-button>
+        </h1>
         <smart-table
             :columns="this.columns"
             :rows="this.posts"

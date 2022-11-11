@@ -12,7 +12,11 @@
         {{ csrf_field() }}
     </popup>
     <div class="container">
-        <h1>Вычитка</h1>
+        <h1>Вычитка
+            <emit-button
+                @button-click="this.addVychitka"
+            ></emit-button>
+        </h1>
         <select-table
             @change-value="this.getPosts"
         ></select-table>

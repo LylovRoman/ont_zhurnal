@@ -1,6 +1,7 @@
 import SmartTable from "./components/SmartTable.js";
 import Popup from "./components/Popup.js";
 import Inputs from "./components/Inputs.js";
+import EmitButton from "./components/EmitButton.js";
 
 window.addEventListener('DOMContentLoaded', (event) => {
     Vue.createApp({
@@ -45,6 +46,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 fetch(`/api/nagruzka`)
                     .then(res => res.json())
                     .then(res => {
+                        res.forEach(element => {
+                            element.predmet = element.discip.name;
+                        })
                         this.posts = res;
                     })
             },
@@ -52,8 +56,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 fetch(`/api/nagruzka/${row.id}`)
                     .then(res => res.json())
                     .then(res => {
+                        delete res[0].itogo;
                         this.inputs = res[0];
-                        console.log(this.inputs);
                         this.action = '/api/update/nagruzka';
                     });
             },
@@ -67,6 +71,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 fetch(`/api/nagruzka/score/latest`)
                     .then(res => res.json())
                     .then(res => {
+                        res.predmet = undefined;
+                        res.sem1 = 0;
+                        res.sem2 = 0;
+                        res.haracter = undefined;
+                        res.tip = undefined;
+                        res.gruppa = undefined;
+                        delete res.itogo;
                         res.id++;
                         this.inputs = res;
                         this.action = '/api/add/nagruzka';
@@ -76,7 +87,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
         components: {
             SmartTable,
             Popup,
-            Inputs
+            Inputs,
+            EmitButton
         }
     }).mount('#app');
 })

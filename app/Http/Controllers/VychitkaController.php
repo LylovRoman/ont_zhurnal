@@ -14,10 +14,10 @@ class VychitkaController extends Controller
         return view('vychitka');
     }
     public function showAllVychitkaJson(Request $request){
-        if(empty($request->month) || $request->month == 0) {
-            $vychitka = Vychitka::where('KODPREPOD', Auth::user()->id)->get();
-        } else {
+        if($request->month) {
             $vychitka = Vychitka::where('MESYAC', $request->month)->where('KODPREPOD', Auth::user()->id)->get();
+        } else {
+            $vychitka = Vychitka::where('KODPREPOD', Auth::user()->id)->get();
         }
         return response($vychitka);
     }

@@ -143,6 +143,7 @@ export default {
                     button.innerHTML = el.title;
                     button.style.cssText = `
                         width: 100%;
+                        margin-bottom: 5px;
                     `
                     button.onclick = () => {
                         el.cb(Object.assign(this.items[indexElement], {_i: indexElement}), this.refreshData);
@@ -175,8 +176,7 @@ export default {
     },
     template: `
         <table style="border: 1px solid #AAAAAA; min-width: 100%;" cellspacing="0">
-            <thead>
-                <tr style="background: #FFFFFF" :style="this.stickyHeader ? 'position: sticky; top: 0px;' : ''">
+                <tr style="background: #ffffff" :style="this.stickyHeader ? 'position: sticky; top: 0px;' : ''">
                     <th v-if="this.canSelectRow" style="border: 1px solid #AAAAAA;"></th>
                     <th v-for="column in this.columns" style="padding: 10px; border: 1px solid #AAAAAA;">
                         {{ column }}
@@ -185,12 +185,12 @@ export default {
             </thead>
             <tbody>
                 <tr @contextmenu="this.disableBrowserContentMenu($event, index)" ref="TableRows" @mousedown="this.selectRow($event, index)" v-for="(row, index) in this.items" style="cursor: pointer; border-collapse: collapse; border: 2px solid rgb(127,127,127);">
-                    <th v-if="this.canSelectRow" style="padding: 0 10px; border: 1px solid #AAAAAA; background: #AAAAAA;">
+                    <td v-if="this.canSelectRow" style="padding: 0 10px; border: 1px solid #AAAAAA; background: #AAAAAA;">
                         <input type="checkbox" disabled>
-                    </th>
-                    <th v-html="row[key]" v-for="(column, key) in this.columns" style="padding: 10px; border: 1px solid #AAAAAA; background: rgba(230,230,230, 1)">
+                    </td>
+                    <td v-html="row[key]" v-for="(column, key) in this.columns" style="padding: 10px; border: 1px solid #AAAAAA; background: rgb(243,243,243)">
 
-                    </th>
+                    </td>
                 </tr>
             </tbody>
         </table>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Discip;
 use App\Models\Nagruzka;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,6 +16,7 @@ class NagruzkaController extends Controller
     }
     public function showAllNagruzkaJson(){
         $nagruzki = Nagruzka::where('prepod', Auth::user()->id)->get();
+
         return response($nagruzki);
     }
     public function showNagruzkaJson($id){
@@ -41,13 +43,13 @@ class NagruzkaController extends Controller
     public function addNagruzka(Request $request){
         Nagruzka::create([
             'id' => $request->id,
-            'prepod' => $request->prepod,
+            'prepod' => Auth::id(),
             'predmet' => $request->predmet,
             'sem1' => $request->sem1,
             'sem2' => $request->sem2,
             'haracter' => $request->haracter,
             'tip' => $request->tip,
-            'itogo' => $request->itogo,
+            'itogo' => $request->sem1 + $request->sem2,
             'gruppa' => $request->gruppa
         ]);
         return redirect('/nagruzka');

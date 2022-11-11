@@ -2,6 +2,7 @@ import SmartTable from "./components/SmartTable.js";
 import Popup from "./components/Popup.js";
 import Inputs from "./components/Inputs.js";
 import SelectTable from "./components/SelectTable.js";
+import EmitButton from "./components/EmitButton.js";
 
 window.addEventListener('DOMContentLoaded', (event) => {
     Vue.createApp({
@@ -38,19 +39,52 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 selectAction: 'vychitka/filter/'
             }
         },
-        created() {
-            this.getPosts();
-        },
-        watch: {
-            inputs(){
-                console.log(this.inputs);
-            }
-        },
         methods: {
             getPosts(monthValue) {
                 fetch(`/api/vychitka?month=${monthValue}`)
                     .then(res => res.json())
                     .then(res => {
+                        res.forEach(element => {
+                            element.PREDMET = element.PREDMETNAME;
+                            switch (element.MESYAC){
+                                case 1:
+                                    element.MESYAC = 'Январь'
+                                    break;
+                                case 2:
+                                    element.MESYAC = 'Февраль'
+                                    break;
+                                case 3:
+                                    element.MESYAC = 'Март'
+                                    break;
+                                case 4:
+                                    element.MESYAC = 'Апрель'
+                                    break;
+                                case 5:
+                                    element.MESYAC = 'Май'
+                                    break;
+                                case 6:
+                                    element.MESYAC = 'Июнь'
+                                    break;
+                                case 7:
+                                    element.MESYAC = 'Июль'
+                                    break;
+                                case 8:
+                                    element.MESYAC = 'Август'
+                                    break;
+                                case 9:
+                                    element.MESYAC = 'Сентябрь'
+                                    break;
+                                case 10:
+                                    element.MESYAC = 'Октябрь'
+                                    break;
+                                case 11:
+                                    element.MESYAC = 'Ноябрь'
+                                    break;
+                                case 12:
+                                    element.MESYAC = 'Декабрь'
+                                    break;
+                            }
+                        })
                         this.posts = res;
                     })
             },
@@ -66,6 +100,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 fetch(`/api/vychitka/score/latest`)
                     .then(res => res.json())
                     .then(res => {
+                        res.MESYAC = undefined;
+                        res.GOD = undefined;
+                        res.PREDMET = undefined;
+                        res.TIP = undefined;
+                        res.GRUPPA = undefined;
+                        res.VSEGO = undefined;
                         res.KOD++;
                         this.inputs = res;
                         this.action = '/api/add/vychitka';
@@ -82,7 +122,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             SmartTable,
             Popup,
             Inputs,
-            SelectTable
+            SelectTable,
+            EmitButton
         }
     }).mount('#app');
 })

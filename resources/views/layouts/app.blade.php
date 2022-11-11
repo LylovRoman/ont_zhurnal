@@ -21,7 +21,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
-<body style="background-color: #fff7f3">
+<body style="background-color: #fff7f3; color: #000000">
     <div>
         <nav class="navbar navbar-expand-md navbar-light shadow-sm">
             <div class="container">

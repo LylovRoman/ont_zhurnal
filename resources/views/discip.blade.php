@@ -12,7 +12,11 @@
         {{ csrf_field() }}
     </popup>
     <div class="container">
-        <h1>Специальности</h1>
+        <h1>Специальности
+            <emit-button
+                @button-click="this.addSpez"
+            ></emit-button>
+        </h1>
         <smart-table ref="usersTable"
              :columns="this.columnsSpezTable"
              :rows="this.spezs"
@@ -22,7 +26,11 @@
              :sticky-header="false"
              :action-panel-row="this.spezActionPanel"
         ></smart-table><br>
-        <h1>Дисциплины</h1>
+        <h1>Дисциплины
+            <emit-button
+                @button-click="this.addDiscip"
+            ></emit-button>
+        </h1>
         <input-sort v-model:input-value="this.searchValue"></input-sort>
         <smart-table
             :columns="this.columnsDiscipTable"

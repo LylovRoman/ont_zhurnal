@@ -2,6 +2,7 @@ import SmartTable from "./components/SmartTable.js";
 import Popup from "./components/Popup.js";
 import Inputs from "./components/Inputs.js";
 import InputSort from "./components/InputSort.js";
+import EmitButton from "./components/EmitButton.js";
 
 
 window.addEventListener('DOMContentLoaded', (event) => {
@@ -79,6 +80,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 fetch(`/api/spez/score/latest`)
                     .then(res => res.json())
                     .then(res => {
+                        res.kod = undefined;
+                        res.name = undefined;
                         this.columns = this.columnsSpezTable;
                         this.inputs = res;
                         this.action = '/api/add/spez';
@@ -106,6 +109,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 fetch(`/api/discip/score/latest`)
                     .then(res => res.json())
                     .then(res => {
+                        res.name = undefined;
+                        res.spez = undefined;
+                        res.sokr = undefined;
                         this.columns = this.columnsDiscipTable;
                         res.kod++;
                         this.inputs = res;
@@ -152,7 +158,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             SmartTable,
             Popup,
             Inputs,
-            InputSort
+            InputSort,
+            EmitButton
         }
     }).mount('#app');
 })
