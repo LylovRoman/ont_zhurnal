@@ -6,6 +6,6 @@ export default {
         }
     },
     template: `
-        <a @click="this.activate" style="margin-left: 10px; color: rgba(0, 0, 0, 20%); background-color: rgba(0, 0, 0, 0%); border: none; cursor: pointer;">+</a>
+        <a @click="this.activate" style="color: rgba(0, 0, 0, 20%); background-color: rgba(0, 0, 0, 0%); border: none; cursor: pointer;">+</a>
     `,
 }
